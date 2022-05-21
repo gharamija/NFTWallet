@@ -27,8 +27,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".AddNFTActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <activity
             android:name=".CameraActivity"
             android:exported="false"
@@ -37,10 +38,6 @@
             android:name=".CollectionDisplayActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".NFTDisplayActivity"
@@ -50,7 +47,10 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

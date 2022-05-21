@@ -12,21 +12,21 @@ import java.util.List;
 public class DataStorage {
 
     public static final List<NFT> NFTS = Arrays.asList(
-            new NFT(1L, "Crypto Punker", "aa", 1200.0, "", false),
-            new NFT(2L, "Ilija Muskic", "ba", 2.0, "", false),
-            new NFT(3L, "Mark Cukerberg", "ca", 0.0, "", false),
-            new NFT(4L, "Nikola Tesla", "da", 3.0, "", false),
-            new NFT(5L, "Anto Dapic", "ea", 0.1, "", false),
-            new NFT(6L, "Josko Cagalj", "fa", 120.0, "", false),
-            new NFT(7L, "Sinisa Vuco", "ga", 60.0, "", false),
-            new NFT(8L, "Don Kacunko", "ha", 12.0, "", false),
-            new NFT(9L, "Jala I Buba", "ia", 1.0, "", false)
+            new NFT("Crypto Punker", "aa", 1200.0, "", false),
+            new NFT("Ilija Muskic", "ba", 2.0, "", false),
+            new NFT("Mark Cukerberg", "ca", 0.0, "", false),
+            new NFT("Nikola Tesla", "da", 3.0, "", false),
+            new NFT("Anto Dapic", "ea", 0.1, "", false),
+            new NFT("Josko Cagalj", "fa", 120.0, "", false),
+            new NFT("Sinisa Vuco", "ga", 60.0, "", false),
+            new NFT("Don Kacunko", "ha", 12.0, "", false),
+            new NFT("Jala I Buba", "ia", 1.0, "", false)
     );
 
     public static final List<Collection> COLLECTIONS = Arrays.asList(
-            new Collection(1L, "svi"),
-            new Collection(2L, "neki"),
-            new Collection(3L, "najbolji")
+            new Collection("svi"),
+            new Collection("neki"),
+            new Collection("najbolji")
     );
 
     public static List<CollectionWithNFT> getCollections() {
