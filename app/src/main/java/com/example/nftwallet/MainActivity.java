@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 modelCall.enqueue(new Callback<Model>() {
 
                     @Override
+
                     public void onResponse(Call<Model> call, Response<Model> response) {
                         Log.e(TAG, "on response code: "+response.code());
                         Log.e(TAG, "onResponse: "+ response.body().getDollars());
