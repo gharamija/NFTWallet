@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/iv_cover"
+        android:adjustViewBounds="true"
         android:layout_width="@dimen/size_cover_width"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_horizontal"
         android:layout_marginVertical="@dimen/margin_vertical"
         android:src="@drawable/ic_launcher_background"
@@ -21,7 +22,17 @@
          />
 
     <Button
-        android:id="@+id/button_tool_circle"
+        android:id="@+id/add_image"
+        android:text="ADD image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_cover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/add_image_camera"
         android:text="ADD image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +51,7 @@
         android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_tool_circle">
+        app:layout_constraintTop_toBottomOf="@id/add_image">
 
 <com.google.android.material.textfield.TextInputEditText
     android:id="@+id/et_name"
@@ -81,8 +92,28 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_price"
-            android:inputType="number"
             android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_imageurl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginVertical="@dimen/margin_vertical"
+        android:hint="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_price">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_imageurl"
+            android:layout_width="match_parent"
+            android:inputType="none"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 

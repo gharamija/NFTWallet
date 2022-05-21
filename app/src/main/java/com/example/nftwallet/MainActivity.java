@@ -42,26 +42,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getData = binding.getData;
-        getData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call<Model> modelCall = RetrofitClient.getInstance().getMyApi().getData();
-
-                modelCall.enqueue(new Callback<Model>() {
-
-                    @Override
-                    public void onResponse(Call<Model> call, Response<Model> response) {
-                        Log.e(TAG, "on response code: "+response.code());
-                        Log.e(TAG, "onResponse: "+ response.body().getDollars());
-                    }
-
-                    @Override
-                    public void onFailure(Call<Model> call, Throwable t) {
-                        Log.e(TAG, "onFailure: "+ t.getMessage());
-                    }
-                });
-            }
-        });
     }
 }
