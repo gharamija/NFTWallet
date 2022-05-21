@@ -12,3 +12,4 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
     }
 }
+
