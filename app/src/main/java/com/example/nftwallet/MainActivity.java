@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView rv = findViewById(R.id.rv_collection_list_items);
 
-        Log.d(TAG, String.valueOf(DB.collectionDao().getAll().size()));
-        Log.d(TAG, "onCreateeeeeeeeeeeeeee: ");
 
 
         //List<CollectionWithNFT> collections = DB.collectionDao().getAll();
