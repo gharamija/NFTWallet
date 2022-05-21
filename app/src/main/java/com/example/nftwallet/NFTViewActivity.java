@@ -50,7 +50,6 @@ public class NFTViewActivity extends AppCompatActivity {
         popup.show();
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item, String itemId) {
         int id = item.getItemId();
         DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
@@ -77,7 +76,7 @@ public class NFTViewActivity extends AppCompatActivity {
 
         if (id == R.id.delete) {
             DB.nFTDao().deleteNFT(novi);
-            finish());
+            finish();
             return true;
         }
 

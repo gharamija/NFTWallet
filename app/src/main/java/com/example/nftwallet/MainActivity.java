@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         });
         //rv.setAdapter(new CollectionListItemAdapter(RepositoryDatabase.getCollectionWithNft(this.getApplicationContext())));
 
+
+        CollectionWithNFT allNfts = new CollectionWithNFT(new Collection("Sve kolekcije"), new ArrayList<>());
+
+        list.forEach(collection -> {
+            allNfts.nfts.addAll(collection.nfts);
+        });
+
+        list.add(allNfts);
+
         rv.setAdapter(new CollectionListItemAdapter(list));
 
 

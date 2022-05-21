@@ -29,18 +29,10 @@ public class DataStorage {
             new Collection("najbolji")
     );
 
-   /* public static List<CollectionWithNFT> getCollections() {
-        CollectionWithNFT col_nft_1 = new CollectionWithNFT();
-        CollectionWithNFT col_nft_2 = new CollectionWithNFT();
-        CollectionWithNFT col_nft_3 = new CollectionWithNFT();
-
-        col_nft_1.collection = COLLECTIONS.get(0);
-        col_nft_2.collection = COLLECTIONS.get(1);
-        col_nft_3.collection = COLLECTIONS.get(2);
-
-        col_nft_1.nfts = new ArrayList<NFT>();
-        col_nft_2.nfts = new ArrayList<NFT>();
-        col_nft_3.nfts = new ArrayList<NFT>();
+    public static List<CollectionWithNFT> getCollections() {
+        CollectionWithNFT col_nft_1 = new CollectionWithNFT(COLLECTIONS.get(0), new ArrayList<NFT>());
+        CollectionWithNFT col_nft_2 = new CollectionWithNFT(COLLECTIONS.get(1), new ArrayList<NFT>());
+        CollectionWithNFT col_nft_3 = new CollectionWithNFT(COLLECTIONS.get(2), new ArrayList<NFT>());
 
         col_nft_1.nfts.add(NFTS.get(0));
         col_nft_1.nfts.add(NFTS.get(1));
@@ -59,5 +51,5 @@ public class DataStorage {
     public static CollectionWithNFT getOneCollection() {
         return getCollections().get(0);
     }
-*/
+
 }

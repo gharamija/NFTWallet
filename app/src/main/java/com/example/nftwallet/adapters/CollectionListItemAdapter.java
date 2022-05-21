@@ -61,6 +61,7 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
             sizeTextView.setText(String.format(Locale.US, "%d", collection.nfts.size()));
 
         }
+        
     }
 
 }
