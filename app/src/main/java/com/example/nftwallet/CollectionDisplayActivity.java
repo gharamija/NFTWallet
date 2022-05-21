@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.nftwallet.adapters.CollectionListItemAdapter;
 import com.example.nftwallet.adapters.NFTListItemAdapter;
+import com.example.nftwallet.data.FetchData;
 import com.example.nftwallet.data.PriceSingleton;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
@@ -41,9 +42,13 @@ public class CollectionDisplayActivity extends AppCompatActivity {
             totalEthPrice += nft.price;
         }
 
-        // TODO: make this actually work
-        // double totalUsdPrice = totalEthPrice * PriceSingleton.getInstance().getPriceInDollars();
-        double totalUsdPrice = 1980.97 * totalEthPrice;
+        // Absolute disaster
+        if (PriceSingleton.getInstance().getPriceInDollars() < 0) {
+            FetchData.getData();
+        }
+
+        double totalUsdPrice = totalEthPrice * PriceSingleton.getInstance().getPriceInDollars();
+
 
         ethPriceView.setText(String.format(Locale.US, "%.4f ETH", totalEthPrice));
         usdPriceView.setText(String.format(Locale.US, "%.2f USD", totalUsdPrice));
