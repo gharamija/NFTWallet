@@ -7,4 +7,6 @@ public class Model {
         return USD;
     }
 
+
+
 }
