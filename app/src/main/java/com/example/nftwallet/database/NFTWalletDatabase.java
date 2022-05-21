@@ -11,7 +11,7 @@ import com.example.nftwallet.database.Entities.CollectionsAndNFT;
 import com.example.nftwallet.database.Entities.NFT;
 
 @Database(
-        version = 1,
+        version = 2,
         entities = {
                 NFT.class,
                 Collection.class,
@@ -21,7 +21,8 @@ import com.example.nftwallet.database.Entities.NFT;
 public abstract class NFTWalletDatabase extends RoomDatabase {
     public abstract NFTDao nFTDao();
     public abstract CollectionDao collectionDao();
-    public abstract CollectionWithNFTDao collectionWithNFTDao();
+  //  public abstract CollectionWithNFTDao collectionWithNFTDao();
+    public abstract CollectionAndNFTDao collectionsAndNFT();
 
     private static NFTWalletDatabase INSTANCE;
 
@@ -31,6 +32,7 @@ public abstract class NFTWalletDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context,
                             NFTWalletDatabase.class, "NFT_database")
                     .allowMainThreadQueries()
+
                     .build();
         }
         return INSTANCE;

@@ -29,7 +29,7 @@ public class DataStorage {
             new Collection("najbolji")
     );
 
-    public static List<CollectionWithNFT> getCollections() {
+   /* public static List<CollectionWithNFT> getCollections() {
         CollectionWithNFT col_nft_1 = new CollectionWithNFT();
         CollectionWithNFT col_nft_2 = new CollectionWithNFT();
         CollectionWithNFT col_nft_3 = new CollectionWithNFT();
@@ -54,6 +54,6 @@ public class DataStorage {
 
         return Arrays.asList(col_nft_1, col_nft_2, col_nft_3);
 
-    }
+    }*/
 
 }

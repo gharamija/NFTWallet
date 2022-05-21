@@ -8,12 +8,17 @@ import java.util.List;
 
 
 public class CollectionWithNFT {
-    @Embedded
+
     public Collection collection;
-    @Relation(
-            parentColumn = "nftId",
-            entityColumn = "collectionId",
-            associateBy = @Junction(CollectionsAndNFT.class)
-    )
+
     public List<NFT> nfts;
+
+    public CollectionWithNFT(Collection collection, List<NFT> nfts) {
+        this.collection = collection;
+        this.nfts = nfts;
+    }
+
+
+
+
 }

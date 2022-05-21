@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -23,11 +23,17 @@
         >
         <activity
             android:name=".AddCollectionActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+
+        </activity>
+
+
+
         <activity
             android:name=".AddNFTActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity

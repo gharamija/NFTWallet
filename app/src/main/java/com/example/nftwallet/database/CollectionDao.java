@@ -20,5 +20,5 @@ public interface CollectionDao {
     void deleteCollection(Collection collection);
 
     @Query("SELECT * FROM Collection")
-    LiveData<List<CollectionWithNFT>> getAll();
+    List<Collection> getAll();
 }

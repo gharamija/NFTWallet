@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/acitivity_nftview.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_add_collection.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_add_nft.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_camera.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_collection_display.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_main.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_nft_display.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/collection_list_item.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/Antonio/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/nft_list_item.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/kuzmi/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/acitivity_nftview.xml" value="0.1" />
         <entry key="..\:/Users/kuzmi/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_add_collection.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kuzmi/AndroidStudioProjects/NFTWallet/app/src/main/res/layout/activity_add_nft.xml" value="0.25416666666666665" />
