@@ -3,6 +3,7 @@ package com.example.nftwallet;
 import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
+import com.example.nftwallet.database.NFTWalletDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,20 +23,20 @@ public class DataStorage {
             new NFT(9L, "i", "ia", 12.0, "", false)
     );
 
-
+    public static final List<Collection> COLLECTIONS = Arrays.asList(
+            new Collection(1L, "svi"),
+            new Collection(2L, "neki"),
+            new Collection(3L, "najbolji")
+    );
 
     public static List<CollectionWithNFT> getCollections() {
-        Collection col_1 = new Collection(1L, "svi");
-        Collection col_2 = new Collection(2L, "neki");
-        Collection col_3 = new Collection(3L, "najbolji");
-
         CollectionWithNFT col_nft_1 = new CollectionWithNFT();
         CollectionWithNFT col_nft_2 = new CollectionWithNFT();
         CollectionWithNFT col_nft_3 = new CollectionWithNFT();
 
-        col_nft_1.collection = col_1;
-        col_nft_2.collection = col_2;
-        col_nft_3.collection = col_3;
+        col_nft_1.collection = COLLECTIONS.get(0);
+        col_nft_2.collection = COLLECTIONS.get(1);
+        col_nft_3.collection = COLLECTIONS.get(2);
 
         col_nft_1.nfts = new ArrayList<NFT>();
         col_nft_2.nfts = new ArrayList<NFT>();

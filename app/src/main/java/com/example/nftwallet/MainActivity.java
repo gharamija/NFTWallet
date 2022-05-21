@@ -17,6 +17,7 @@ import com.example.nftwallet.data.Model;
 import com.example.nftwallet.data.PriceSingleton;
 import com.example.nftwallet.data.RetrofitClient;
 import com.example.nftwallet.database.CollectionDao;
+import com.example.nftwallet.database.CollectionWithNFTDao;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
 import com.example.nftwallet.database.NFTDao;
@@ -46,8 +47,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FetchData.getData();
 
-
+        CollectionWithNFTDao collectionWithNFTDao = NFTWalletDatabase
+                .getInstance(this.getApplicationContext())
+                .collectionWithNFTDao();
         List<CollectionWithNFT> collectionWithNFTList = DataStorage.getCollections();
+
+        for(CollectionWithNFT col : collectionWithNFTList) {
+            collectionWithNFTDao.insert(col);
+        }
+
+//        for(NFT nft : DataStorage.NFTS){
+//            nftDao.insertNFT(nft);
+//        }
+
+
+
 
         // setupDatabase();
         // setupRecyclerView();
