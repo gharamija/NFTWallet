@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rv_collection_list_items);
         rv.setAdapter(new CollectionListItemAdapter(collectionWithNFTList));
 
+
     }
 
 
