@@ -56,4 +56,8 @@ public class DataStorage {
 
     }
 
+    public static CollectionWithNFT getOneCollection() {
+        return getCollections().get(0);
+    }
+
 }
