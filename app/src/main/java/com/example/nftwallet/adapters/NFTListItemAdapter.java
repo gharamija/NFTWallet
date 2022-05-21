@@ -1,6 +1,8 @@
 package com.example.nftwallet.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nftwallet.R;
+import com.example.nftwallet.data.ImageLoadTask;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
 
 import org.w3c.dom.Text;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,8 +72,11 @@ public class NFTListItemAdapter extends RecyclerView.Adapter<NFTListItemAdapter.
 
             nameTextView.setText(nft.name);
             priceTextView.setText(String.format(Locale.US, "%.4f ETH", nft.price));
-//            imageView.setImageBitmap(); // TODO
+
+            new ImageLoadTask(nft.imageUrl, imageView).execute();
+
         }
+
     }
 }
 

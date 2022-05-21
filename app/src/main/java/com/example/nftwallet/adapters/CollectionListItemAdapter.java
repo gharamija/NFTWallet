@@ -1,12 +1,9 @@
 package com.example.nftwallet.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,6 +59,7 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
 
             nameTextView.setText(collection.collection.name);
             sizeTextView.setText(String.format(Locale.US, "%d", collection.nfts.size()));
+
         }
     }
 
