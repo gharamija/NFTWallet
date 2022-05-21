@@ -12,8 +12,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_nftdisplay.xml" value="0.18177083333333333" />
-        <entry key="app/src/main/res/layout/activity_testtest.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/collection_list_item.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.22518615722656243" />
+        <entry key="app/src/main/res/layout/activity_add_nft.xml" value="0.21240942028985507" />
       </map>
     </option>
   </component>

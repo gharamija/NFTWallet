@@ -1,5 +1,6 @@
 package com.example.nftwallet;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +12,9 @@ import android.widget.ListView;
 
 import com.example.nftwallet.adapters.CollectionListItemAdapter;
 import com.example.nftwallet.data.Api;
+import com.example.nftwallet.data.FetchData;
 import com.example.nftwallet.data.Model;
+import com.example.nftwallet.data.PriceSingleton;
 import com.example.nftwallet.data.RetrofitClient;
 import com.example.nftwallet.database.CollectionDao;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FetchData.getData();
+
 
         List<CollectionWithNFT> collectionWithNFTList = DataStorage.getCollections();
 
