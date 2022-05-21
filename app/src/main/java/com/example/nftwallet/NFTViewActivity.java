@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NFTDisplayActivity extends AppCompatActivity {
+public class NFTViewActivity extends AppCompatActivity {
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, NFTDisplayActivity.class);
@@ -23,6 +23,7 @@ public class NFTDisplayActivity extends AppCompatActivity {
     private TextView name;
     private TextView price;
     private TextView description;
+    
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
