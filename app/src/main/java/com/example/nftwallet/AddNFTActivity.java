@@ -26,8 +26,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.nftwallet.database.Entities.Collection;
-
 import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityAddNftBinding;
 import com.example.nftwallet.database.Entities.NFT;
@@ -36,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddNftActivity extends AppCompatActivity {
+public class AddNFTActivity extends AppCompatActivity {
     //Acitivity binding
     private ActivityAddNftBinding binding;
 
@@ -69,18 +67,18 @@ public class AddNftActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_ID_MULTIPLE_PERMISSIONS:
-                if (ContextCompat.checkSelfPermission(AddNftActivity.this,
+                if (ContextCompat.checkSelfPermission(AddNFTActivity.this,
                         Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getApplicationContext(),
                                     "FlagUp Requires Access to Camara.", Toast.LENGTH_SHORT)
                             .show();
-                } else if (ContextCompat.checkSelfPermission(AddNftActivity.this,
+                } else if (ContextCompat.checkSelfPermission(AddNFTActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getApplicationContext(),
                             "FlagUp Requires Access to Your Storage.",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    chooseImage(AddNftActivity.this);
+                    chooseImage(AddNFTActivity.this);
                 }
                 break;
         }
@@ -141,8 +139,8 @@ public class AddNftActivity extends AppCompatActivity {
         //add image button
         binding.addImage.setOnClickListener(v -> {
             Log.d(TAG, "setupScreeneeeeeeeeeee: ");
-            if(checkAndRequestPermissions(AddNftActivity.this)){
-                chooseImage(AddNftActivity.this);
+            if(checkAndRequestPermissions(AddNFTActivity.this)){
+                chooseImage(AddNFTActivity.this);
 
             }
         });
