@@ -30,6 +30,8 @@ import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityAddNftBinding;
 import com.example.nftwallet.database.Entities.NFT;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +87,26 @@ public class AddNFTActivity extends AppCompatActivity {
     }
 
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String path = "";
+        if (getContentResolver() != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                path = cursor.getString(idx);
+                cursor.close();
+            }
+        }
+        return path;
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,6 +116,12 @@ public class AddNFTActivity extends AppCompatActivity {
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         imageView.setImageBitmap(selectedImage);
+
+                        Uri tempUri = getImageUri(getApplicationContext(), selectedImage);
+
+                        binding.etImageurl.setText(new File(getRealPathFromURI(tempUri)).toString());
+                        binding.etImageurl.setText(tempUri.toString());
+
                     }
                     break;
                 case 1:
@@ -105,8 +133,17 @@ public class AddNFTActivity extends AppCompatActivity {
                             if (cursor != null) {
                                 cursor.moveToFirst();
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+
+
                                 String picturePath = cursor.getString(columnIndex);
+
+
+                                //TODO
+                                binding.etImageurl.setText(picturePath);
+
+
                                 imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
                                 cursor.close();
                             }
                         }
