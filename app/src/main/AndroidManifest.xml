@@ -23,17 +23,13 @@
         >
         <activity
             android:name=".AddCollectionActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
-
         </activity>
-
-
 
         <activity
             android:name=".AddNFTActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar">
 
             <intent-filter>
@@ -47,17 +43,27 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".CollectionDisplayActivity"
-            android:exported="true"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name=".CollectionChoiceActivity"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity
             android:name=".NFTDisplayActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
 
         </activity>
     </application>
