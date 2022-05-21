@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NFTWallet</string>
+    <string name="add_new_collection">Add new collection</string>
+    <string name="add_new_nft">Add new NFT</string>
 </resources>
