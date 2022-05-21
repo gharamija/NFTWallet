@@ -15,15 +15,9 @@ public class Collection {
     public String name;
 
 
-    public Collection(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Collection(String name) {
         this.name = name;
     }
 
-    //+ getAll(): List<Collection>
-//+ getOne(): Collection
 }
