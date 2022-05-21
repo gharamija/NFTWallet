@@ -10,7 +10,7 @@
         android:id="@+id/iv_cover"
         android:adjustViewBounds="true"
         android:layout_width="@dimen/size_cover_width"
-        android:layout_height="wrap_content"
+        android:layout_height="256dp"
         android:layout_marginHorizontal="@dimen/margin_horizontal"
         android:layout_marginVertical="@dimen/margin_vertical"
         android:src="@drawable/ic_launcher_background"
@@ -31,15 +31,7 @@
         android:layout_height="wrap_content"
         />
 
-    <Button
-        android:id="@+id/add_image_camera"
-        android:text="ADD image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_cover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+
 
 <!--    //Name-->
     <com.google.android.material.textfield.TextInputLayout
