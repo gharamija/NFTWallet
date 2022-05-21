@@ -23,6 +23,7 @@ import com.example.nftwallet.database.NFTDao;
 import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityMainBinding;
 
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     //Acitivity binding
-//    private ActivityMainBinding binding;
+   private ActivityMainBinding binding;
 //    private ListView collectionListView;
 
     private CollectionDao collectionDao;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
         FetchData.getData();
 
