@@ -43,7 +43,7 @@
         >
 
         <TextView
-            android:id="@+id/eth_value"
+            android:id="@+id/collection_eth_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
@@ -56,7 +56,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/usd_value"
+            android:id="@+id/collection_usd_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
