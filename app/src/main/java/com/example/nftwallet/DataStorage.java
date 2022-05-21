@@ -12,15 +12,15 @@ import java.util.List;
 public class DataStorage {
 
     public static final List<NFT> NFTS = Arrays.asList(
-            new NFT(1L, "a", "aa", 12.0, "", false),
-            new NFT(2L, "b", "ba", 12.0, "", false),
-            new NFT(3L, "c", "ca", 12.0, "", false),
-            new NFT(4L, "d", "da", 12.0, "", false),
-            new NFT(5L, "e", "ea", 12.0, "", false),
-            new NFT(6L, "f", "fa", 12.0, "", false),
-            new NFT(7L, "g", "ga", 12.0, "", false),
-            new NFT(8L, "h", "ha", 12.0, "", false),
-            new NFT(9L, "i", "ia", 12.0, "", false)
+            new NFT(1L, "Crypto Punker", "aa", 1200.0, "", false),
+            new NFT(2L, "Ilija Muskic", "ba", 2.0, "", false),
+            new NFT(3L, "Mark Cukerberg", "ca", 0.0, "", false),
+            new NFT(4L, "Nikola Tesla", "da", 3.0, "", false),
+            new NFT(5L, "Anto Dapic", "ea", 0.1, "", false),
+            new NFT(6L, "Josko Cagalj", "fa", 120.0, "", false),
+            new NFT(7L, "Sinisa Vuco", "ga", 60.0, "", false),
+            new NFT(8L, "Don Kacunko", "ha", 12.0, "", false),
+            new NFT(9L, "Jala I Buba", "ia", 1.0, "", false)
     );
 
     public static final List<Collection> COLLECTIONS = Arrays.asList(

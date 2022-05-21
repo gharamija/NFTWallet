@@ -47,14 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FetchData.getData();
 
-        CollectionWithNFTDao collectionWithNFTDao = NFTWalletDatabase
-                .getInstance(this.getApplicationContext())
-                .collectionWithNFTDao();
         List<CollectionWithNFT> collectionWithNFTList = DataStorage.getCollections();
 
-        for(CollectionWithNFT col : collectionWithNFTList) {
-            collectionWithNFTDao.insert(col);
-        }
 
 //        for(NFT nft : DataStorage.NFTS){
 //            nftDao.insertNFT(nft);

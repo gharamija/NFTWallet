@@ -16,47 +16,10 @@ import com.example.nftwallet.R;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 
 import java.util.List;
-/*
-public class CollectionListItemAdapter extends BaseAdapter {
-    private Context context;
-    private List<CollectionWithNFT> collectionWithNFTList;
+import java.util.Locale;
 
-    private LayoutInflater inflater;
-
-    public CollectionListItemAdapter(Context context, List<CollectionWithNFT> collectionWithNFTList) {
-        this.context = context;
-        this.collectionWithNFTList = collectionWithNFTList;
-    }
-
-    @Override
-    public int getCount() {
-        return collectionWithNFTList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return collectionWithNFTList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return collectionWithNFTList.get(position).collection.id;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.activity_main, null);
-        TextView nameTextView = convertView.findViewById(R.id.collection_list_item_name);
-        TextView sizeTextView = convertView.findViewById(R.id.collection_list_item_size);
-        nameTextView.setText(collectionWithNFTList.get(position).collection.name);
-        sizeTextView.setText(collectionWithNFTList.get(position).nfts.size());
-        return convertView;
-    }
-}
-*/
 public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionListItemAdapter.CollectionListItemViewHolder> {
     private Context context;
-    public CollectionListItemAdapter(Context context) {}
     private List<CollectionWithNFT> collections;
 
     public CollectionListItemAdapter(List<CollectionWithNFT> collections) {
@@ -98,8 +61,7 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
             TextView sizeTextView = itemView.findViewById(R.id.collection_list_item_size);
 
             nameTextView.setText(collection.collection.name);
-            sizeTextView.setText(((Integer)collection.nfts.size()).toString());
-;
+            sizeTextView.setText(String.format(Locale.US, "%d", collection.nfts.size()));
         }
     }
 
