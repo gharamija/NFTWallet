@@ -18,7 +18,7 @@ public interface NFTDao {
     void insertNFT(NFT nft);
 
     @Query("SELECT * FROM NFT")
-    LiveData<List<NFT>> getAll();
+    List<NFT> getAll();
 
     @Delete
     void deleteNFT(NFT nft);

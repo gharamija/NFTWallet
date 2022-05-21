@@ -3,18 +3,21 @@ package com.example.nftwallet;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.nftwallet.data.Api;
+
 import com.example.nftwallet.data.Model;
 import com.example.nftwallet.data.RetrofitClient;
+
 import com.example.nftwallet.database.Entities.NFT;
 import com.example.nftwallet.database.NFTDao;
 import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityMainBinding;
+
 
 import java.util.List;
 
@@ -36,7 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        getData = findViewById(R.id.getData);
+        NFTDao nftDao = NFTWalletDatabase.getInstance(this.getApplicationContext()).nFTDao();
+
+        nftDao.insertNFT(new NFT(2l,"nameeee","test",2.0,"image",true));
+
+        Log.d(TAG, "onCreateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ");
+       // Log.d(TAG, nftDao.getAll().toString());
+        Log.d(TAG, nftDao.getAll().get(0).name);
+        Log.d(TAG, String.valueOf(nftDao.getAll().size()));
+        Log.d(TAG, "onCreateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ");
+
+
+        getData = binding.getData;
         getData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
