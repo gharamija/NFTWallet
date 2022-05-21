@@ -31,13 +31,17 @@ public class AddCollectionActivity extends AppCompatActivity implements View.OnC
 
     private void setupDatabase(){
         database = NFTWalletDatabase.getInstance(this.getApplicationContext());
-        database.collectionDao().insertCollection(new Collection(this.textInput));
+        //database.collectionDao().insertCollection(new Collection(this.textInput));
     }
 
     @Override
     public void onClick(View v) {
         textInput = writtenText.getText().toString();
         setupDatabase();
+
+
+        database.collectionDao().insertCollection(new Collection(textInput));
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
