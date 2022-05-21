@@ -16,7 +16,28 @@
         android:theme="@style/Theme.NFTWallet"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".AddCollectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NFTDisplayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddNFTActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCollectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddNFTActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CollectionDisplayActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
