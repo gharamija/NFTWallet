@@ -39,15 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        NFTDao nftDao = NFTWalletDatabase.getInstance(this.getApplicationContext()).nFTDao();
 
-        nftDao.insertNFT(new NFT(2l,"nameeee","test",2.0,"image",true));
-
-        Log.d(TAG, "onCreateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ");
-       // Log.d(TAG, nftDao.getAll().toString());
-        Log.d(TAG, nftDao.getAll().get(0).name);
-        Log.d(TAG, String.valueOf(nftDao.getAll().size()));
-        Log.d(TAG, "onCreateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ");
 
 
         getData = binding.getData;
