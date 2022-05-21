@@ -20,6 +20,10 @@ public class Collection {
         this.name = name;
     }
 
-//+ getAll(): List<Collection>
+    public Collection(String name) {
+        this.name = name;
+    }
+
+    //+ getAll(): List<Collection>
 //+ getOne(): Collection
 }
