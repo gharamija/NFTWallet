@@ -52,7 +52,7 @@ public class AddNFTActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding =ActivityAddNftBinding.inflate(getLayoutInflater());
+        binding = ActivityAddNftBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setupDatabase();
