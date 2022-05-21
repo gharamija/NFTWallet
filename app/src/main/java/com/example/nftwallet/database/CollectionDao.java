@@ -9,8 +9,6 @@ import androidx.room.Query;
 
 import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
-
-
 import java.util.List;
 
 @Dao
