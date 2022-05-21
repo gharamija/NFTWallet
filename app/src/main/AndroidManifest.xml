@@ -28,20 +28,14 @@
             android:name=".AddNFTActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AddCollectionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CameraActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.AddNFTActivity"
-            android:exported="false" />
-        <activity
             android:name=".CollectionDisplayActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

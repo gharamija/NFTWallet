@@ -1,10 +1,17 @@
 package com.example.nftwallet.data;
 
-public class Model {
-    private String USD;
+import com.google.gson.annotations.SerializedName;
 
-    public String getDollars() {
+public class Model {
+    @SerializedName("USD")
+    private Double USD;
+
+    public Double getDollars() {
         return USD;
+    }
+
+    public void setDollars(Double USD) {
+        this.USD = USD;
     }
 
 }
