@@ -133,12 +133,15 @@ public class AddNFTActivity extends AppCompatActivity {
                 return;
             }
             handleNft();
+
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
         });
 
 
         //add image button
         binding.addImage.setOnClickListener(v -> {
-            Log.d(TAG, "setupScreeneeeeeeeeeee: ");
+
             if(checkAndRequestPermissions(AddNFTActivity.this)){
                 chooseImage(AddNFTActivity.this);
 
@@ -155,7 +158,7 @@ public class AddNFTActivity extends AppCompatActivity {
 
         DB.nFTDao().insertNFT(nft);
 
-         //TODO jump to next activity
+
     }
 
     private boolean formValid() {
