@@ -54,10 +54,10 @@ public class DataStorage {
 
         return Arrays.asList(col_nft_1, col_nft_2, col_nft_3);
 
-    }*/
+    }
 
     public static CollectionWithNFT getOneCollection() {
         return getCollections().get(0);
     }
-
+*/
 }

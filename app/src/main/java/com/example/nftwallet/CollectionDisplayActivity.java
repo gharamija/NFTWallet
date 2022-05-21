@@ -1,8 +1,10 @@
 package com.example.nftwallet;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -11,8 +13,10 @@ import com.example.nftwallet.adapters.CollectionListItemAdapter;
 import com.example.nftwallet.adapters.NFTListItemAdapter;
 import com.example.nftwallet.data.FetchData;
 import com.example.nftwallet.data.PriceSingleton;
+import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
+import com.example.nftwallet.database.RepositoryDatabase;
 
 import org.w3c.dom.Text;
 
@@ -23,13 +27,20 @@ public class CollectionDisplayActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_display);
 
+        Bundle bundleData = getIntent().getExtras();
+
+
         // TODO: get CollectionWithNFT from DB
-        CollectionWithNFT collectionWithNFT = DataStorage.getOneCollection();
+        List<CollectionWithNFT> collectionWithNFTList = RepositoryDatabase.getCollectionWithNft(getApplicationContext());
+        CollectionWithNFT collectionWithNFT = collectionWithNFTList.stream().filter(col -> col.collection.id == bundleData.get("id")).findAny().get();
+
+
 
         TextView collectionNameView = findViewById(R.id.name_collection);
         TextView ethPriceView = findViewById(R.id.collection_eth_value);
