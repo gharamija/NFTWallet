@@ -1,10 +1,9 @@
-package com.example.nftwallet.database;
+package com.example.nftwallet.database.Entities;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
 
 @Entity(tableName = "NFT")
 public class NFT {
@@ -21,16 +20,13 @@ public class NFT {
     public String imageUrl;
     @ColumnInfo(name = "sold")
     public Boolean sold;
-    @ColumnInfo(name = "collections")
-    public List<Collection> collections;
 
-    public NFT(Long id, String name, String description, Double price, String imageUrl, Boolean sold, List<Collection> collections) {
+    public NFT(Long id, String name, String description, Double price, String imageUrl, Boolean sold) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
         this.sold = sold;
-        this.collections = collections;
     }
 }
