@@ -57,7 +57,7 @@ public class CollectionDisplayActivity extends AppCompatActivity {
         for(NFT nft : DataStorage.NFTS) {
             Log.d("ACTIVITY", nft.imageUrl);
         }
-        rv.setAdapter(new NFTListItemAdapter(collectionWithNFT.nfts));
+        rv.setAdapter(new NFTListItemAdapter(getApplicationContext(), collectionWithNFT.nfts));
 
     }
 }
