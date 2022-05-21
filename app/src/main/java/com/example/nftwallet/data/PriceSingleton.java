@@ -2,7 +2,7 @@ package com.example.nftwallet.data;
 
 public class PriceSingleton {
     private static PriceSingleton instance = null;
-    private Double priceInDollars;
+    private Double priceInDollars = -1.0;
 
     public static  PriceSingleton getInstance() {
         if (instance == null) {

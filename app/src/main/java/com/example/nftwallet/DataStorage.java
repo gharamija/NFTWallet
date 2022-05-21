@@ -12,15 +12,15 @@ import java.util.List;
 public class DataStorage {
 
     public static final List<NFT> NFTS = Arrays.asList(
-            new NFT("Crypto Punker", "aa", 1200.0, "", false),
-            new NFT("Ilija Muskic", "ba", 2.0, "", false),
-            new NFT("Mark Cukerberg", "ca", 0.0, "", false),
-            new NFT("Nikola Tesla", "da", 3.0, "", false),
-            new NFT("Anto Dapic", "ea", 0.1, "", false),
-            new NFT("Josko Cagalj", "fa", 120.0, "", false),
-            new NFT("Sinisa Vuco", "ga", 60.0, "", false),
-            new NFT("Don Kacunko", "ha", 12.0, "", false),
-            new NFT("Jala I Buba", "ia", 1.0, "", false)
+            new NFT("Crypto Punker", "aa", 1200.0, "https://lh3.googleusercontent.com/40zXeV2KcirN32V8cmfQRoKQYXUMXUYpN2CJW3nj8UgNMOJbG5NO6rV8JWrL2pvBNwKs-Hr3lt4B3Mbw3QklpjyQK9k28R7ZdAR3IQ=w345", false),
+            new NFT("Ilija Muskic", "ba", 2.0, "https://lh3.googleusercontent.com/BxS1uoYaoZYCwj8V6-iP5A_uMafqj7AwUzx4tanqBwnKWM8wGaWEuNoV_Sko6A-RvZflWHupbjUTuO5zy2wWaBD4MKLTofwaQc6M2uM=w510", false),
+            new NFT("Mark Cukerberg", "ca", 0.0, "https://lh3.googleusercontent.com/gVqI7uD_syQr5U29HZNmIBS1jNv9M0vlUzdjRIWoitrFRtl6A0vTH60NUozn_PGtr4ABXWOZrYiNhx7CIA96yI0aJYiy9c6AeIHSBA=w510", false),
+            new NFT("Nikola Tesla", "da", 3.0, "https://lh3.googleusercontent.com/46x3Qw7N3xiP1lObvXDpMyGQXr1j3F-Bheqr-HreRbV5bRsSRUqLkzFl8EFiSoxDzYOH4Me0j3VxStUjfzv6P6qx9W5xoh39fDQ33p4=w495", false),
+            new NFT("Anto Dapic", "ea", 0.1, "https://lh3.googleusercontent.com/bazqcQ5HiDlzoiijOZ27O1lL-BuNtS9v8FQnD4IPEA9n44whqoyuzzo45gM9mjD3Td1swglKjuTY8dLsf6pPR-t2gyolgbBdvmm_ig=w495", false),
+            new NFT("Josko Cagalj", "fa", 120.0, "https://lh3.googleusercontent.com/uTNtvzTskJfj86HMk16tOXQSQlxwTTtNntiHFHDFo3Ba6jEHjxqNadjQJ55_s2t6kszEZbqO78Ld1GpJkQZRWP3zTh4UaVHJYGiJuOc=w495", false),
+            new NFT("Sinisa Vuco", "ga", 60.0, "https://lh3.googleusercontent.com/546ZBzxhsuPGOMQySxGfYsb3tsHVtkxDANHK3bGkuxJiaNUqw2NGzpL-k3C0PDXOzZHZEAldRyNvWGQsWAj_tDkJ2Afl0EuABukPOw=w495", false),
+            new NFT("Don Kacunko", "ha", 12.0, "https://lh3.googleusercontent.com/aOWshK9zZ2xR_sLpiPhu0CNIoepSbKRC0Th3rvmScb9VAmGHN5o_NOlLmzoKSH3Hez-XpDji5_LOc1zrNQcNta_iWJxCvsjRBhHEXBo=w495", false),
+            new NFT("Jala I Buba", "ia", 1.0, "https://lh3.googleusercontent.com/1Dx5TLPgGm_QlWFqzlEAIMQjPSe5YBjTVFfOakb-Z_s9rOmtIVnEZ_Afqg6dF5UW8qX-Aild8uoHcbYc4u_mCvlDHgRanS6R_SRHsQ=w495", false)
     );
 
     public static final List<Collection> COLLECTIONS = Arrays.asList(
@@ -54,6 +54,10 @@ public class DataStorage {
 
         return Arrays.asList(col_nft_1, col_nft_2, col_nft_3);
 
-    }*/
+    }
 
+    public static CollectionWithNFT getOneCollection() {
+        return getCollections().get(0);
+    }
+*/
 }
