@@ -22,6 +22,7 @@ import com.example.nftwallet.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -44,24 +45,6 @@ public class MainActivity extends AppCompatActivity {
         setupDatabase();
         setupScreen();
 
-       /* DB.nFTDao().deleteAll();
-        DB.collectionDao().deleteAll();
-        DB.collectionsAndNFT().deleteAll();
-
-        DB.nFTDao().insertNFT(new NFT("1Bajo","2some description about ",4.0,"noImage",false));
-        DB.nFTDao().insertNFT(new NFT("2Bajo","2some description about ",6.0,"noImage",false));
-        DB.nFTDao().insertNFT(new NFT("3Bajo","some description about ",4.0,"noImage",false));
-
-
-        DB.collectionDao().insertCollection(new Collection("All NFT's"));
-        DB.collectionDao().insertCollection(new Collection("1Collection"));
-        DB.collectionDao().insertCollection(new Collection("2Collection"));*/
-
-       /*DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(38,24));
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(39,24));
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(40,24));
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(39,25));
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(40,26));*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -111,8 +94,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setupDatabase() {
         DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
+        handleMainCollection();
+    }
+
+    //Create Main collection (All nft's collection) if it dosent exists
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void handleMainCollection() {
+        List<Collection> collections = DB.collectionDao().getAll();
+
+        Optional<Collection> AllNftsCollection = collections.stream().filter(c -> c.name.equals("All NFT's")).findAny();
+        if (!AllNftsCollection.isPresent()){
+            DB.collectionDao().insertCollection(new Collection("All NFT's"));
+        }
     }
 
 

@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,10 +24,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionsAndNFT;
 import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityAddNftBinding;
@@ -36,6 +39,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class AddNFTActivity extends AppCompatActivity {
@@ -52,6 +56,7 @@ public class AddNFTActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,9 +170,9 @@ public class AddNFTActivity extends AppCompatActivity {
 
     private void setupDatabase() {
         DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
-
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setupScreen() {
         //save button
         binding.btnSave.setOnClickListener(v -> {
@@ -191,7 +196,12 @@ public class AddNFTActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void handleNft() {
+        //main collection (ALL NFT's collection)
+        List<Collection> collections = DB.collectionDao().getAll();
+        Collection allNftsCollection = collections.stream().filter(c -> c.name.equals("All NFT's")).findFirst().get();
+
         NFT nft = new NFT(
                 binding.etName.getText().toString(),
                 binding.etDescription.getText().toString(),
@@ -200,21 +210,23 @@ public class AddNFTActivity extends AppCompatActivity {
 
         DB.nFTDao().insertNFT(nft);
 
-        //add this nft to All NFT'S collection (All NFT's id:24)
+
+        //add this nft to All NFT'S collection
         List<NFT> nfts = DB.nFTDao().getAll();
         Long nftId = nfts.get(nfts.size()-1).id;
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId,24));
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId,allNftsCollection.id));
 
         //add this nft to collection from past activity
         try {
             Intent intent = getIntent();
             Bundle bundleData = intent.getExtras();
             String collectionId = bundleData.get("collectionId").toString();
-            if (!collectionId.equals("24")) {
-                DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId, Long.valueOf(collectionId)));
+            if (!collectionId.equals(allNftsCollection.id.toString())) {
+                DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId,Long.valueOf(collectionId)));
             }
         }catch (Exception e){}
     }
+
 
     private boolean formValid() {
         boolean valid = true;

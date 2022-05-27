@@ -84,14 +84,16 @@ public class NFTViewActivity extends AppCompatActivity {
 
 
         if (id == R.id.update) {
-            Intent intent = new Intent(getApplicationContext(), CollectionChoiceActivity.class);
-            startActivity(intent);
+           // Intent intent = new Intent(getApplicationContext(), CollectionChoiceActivity.class);
+           // startActivity(intent);
             return true;
         }
 
         if (id == R.id.delete) {
+            Log.d(TAG, "onOptionsItemSelected: ");
             Log.d(TAG, idFromPrevActvty); //19
 
+            DB.collectionsAndNFT().deleteByNftId(Long.getLong(idFromPrevActvty));
             DB.nFTDao().deleteById(Long.getLong(idFromPrevActvty));
 
             finish();

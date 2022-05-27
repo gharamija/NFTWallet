@@ -112,6 +112,7 @@
             android:id="@+id/et_imageurl"
             android:layout_width="match_parent"
             android:inputType="none"
+            android:enabled="false"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
