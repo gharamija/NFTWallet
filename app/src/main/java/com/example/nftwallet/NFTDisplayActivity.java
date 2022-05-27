@@ -34,7 +34,6 @@ public class NFTDisplayActivity extends AppCompatActivity {
         backButton.setOnClickListener(v ->
                 finish());
 
-        //tripleDotButton.setOnClickListener();
     }
 
     @SuppressLint("ClickableViewAccessibility")

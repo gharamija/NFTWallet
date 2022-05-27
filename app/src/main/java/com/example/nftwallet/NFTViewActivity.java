@@ -1,13 +1,19 @@
 package com.example.nftwallet;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +41,7 @@ public class NFTViewActivity extends AppCompatActivity {
     private TextView price;
     private TextView description;
 
+    private String idFromPrevActvty;
     private String nameFromPrevActvty = "Ime";
     private String titleFromPrevActvty;
     private String descriptionFromPrevActvty;
@@ -43,14 +50,19 @@ public class NFTViewActivity extends AppCompatActivity {
 
     private NFTWalletDatabase DB;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this::onOptionsItemSelected);
+
         MenuInflater inflater = popup.getMenuInflater();
+
         inflater.inflate(R.menu.nft_menu, popup.getMenu());
         popup.show();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item, String itemId) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
         List<NFT> all = DB.nFTDao().getAll();
@@ -68,6 +80,9 @@ public class NFTViewActivity extends AppCompatActivity {
         NFT novi = new NFT(nameFromPrevActvty, descriptionFromPrevActvty,
                 priceFrom, imageFromPrevActvty, soldFromPrevActvty);
 
+
+
+
         if (id == R.id.update) {
             Intent intent = new Intent(getApplicationContext(), CollectionChoiceActivity.class);
             startActivity(intent);
@@ -75,7 +90,10 @@ public class NFTViewActivity extends AppCompatActivity {
         }
 
         if (id == R.id.delete) {
-            DB.nFTDao().deleteNFT(novi);
+            Log.d(TAG, idFromPrevActvty); //19
+
+            DB.nFTDao().deleteById(Long.getLong(idFromPrevActvty));
+
             finish();
             return true;
         }
@@ -86,14 +104,21 @@ public class NFTViewActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
+        setupDatabase();
+        setupScreen();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setupScreen() {
 
         setContentView(R.layout.acitivity_nftview);
+
         backButton = findViewById(R.id.back_button);
         tripleDotButton = findViewById(R.id.triple_dot_button);
         image = findViewById(R.id.nft_image);
@@ -103,34 +128,29 @@ public class NFTViewActivity extends AppCompatActivity {
         backButton.setOnClickListener(v ->
                 finish());
 
-        tripleDotButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showPopup(v);
-            }
-        });
+        tripleDotButton.setOnClickListener(this::showPopup);
 
-        List<NFT> all = DB.nFTDao().getAll();
+
 
         //pull name from previous activity
         Intent intent = getIntent();
-        nameFromPrevActvty = intent.getExtras().getString("nameSharing");
+        Bundle bundleData = intent.getExtras();
+        idFromPrevActvty = bundleData.get("id").toString();
+        nameFromPrevActvty=  bundleData.get("name").toString();
+        descriptionFromPrevActvty = bundleData.get("description").toString();
+        priceETHFromPrevActvty = bundleData.get("price").toString() + " Eth";
+        imageFromPrevActvty = bundleData.get("image").toString();
 
-        for(NFT single : all) {
-            if(single.name.equals(nameFromPrevActvty)) {
-                priceETHFromPrevActvty = single.price + " Eth";
-                imageFromPrevActvty = single.imageUrl;
-                descriptionFromPrevActvty = single.description;
-                break;
-            }
-        }
         name.setText(nameFromPrevActvty);
         price.setText(priceETHFromPrevActvty);
         description.setText(descriptionFromPrevActvty);
+        image.setImageBitmap(BitmapFactory.decodeFile(imageFromPrevActvty));
 
-        //image from imageUrl
-        image = findViewById(R.id.nft_image);
-        new ImageLoadTask(imageFromPrevActvty, image).execute();
 
+    }
+
+    private void setupDatabase() {
+        DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -42,45 +42,35 @@ public class MainActivity extends AppCompatActivity {
 
 
         setupDatabase();
+        setupScreen();
+
+       /* DB.nFTDao().deleteAll();
+        DB.collectionDao().deleteAll();
+        DB.collectionsAndNFT().deleteAll();
+
+        DB.nFTDao().insertNFT(new NFT("1Bajo","2some description about ",4.0,"noImage",false));
+        DB.nFTDao().insertNFT(new NFT("2Bajo","2some description about ",6.0,"noImage",false));
+        DB.nFTDao().insertNFT(new NFT("3Bajo","some description about ",4.0,"noImage",false));
 
 
+        DB.collectionDao().insertCollection(new Collection("All NFT's"));
+        DB.collectionDao().insertCollection(new Collection("1Collection"));
+        DB.collectionDao().insertCollection(new Collection("2Collection"));*/
 
+       /*DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(38,24));
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(39,24));
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(40,24));
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(39,25));
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(40,26));*/
+    }
 
-        RecyclerView rv = findViewById(R.id.rv_collection_list_items);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setupScreen() {
+        setupRecyclerView();
+        setupButtons();
+    }
 
-
-
-        /*DB.nFTDao().insertNFT(new NFT("bAJO","dESCRIPTION",1.0,"IMAGE URL",false));
-        DB.collectionDao().insertCollection(new Collection("SuperCollection"));
-        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(1,1));*/
-
-
-        List<Collection> all = DB.collectionDao().getAll();
-        List<CollectionWithNFT> list = new ArrayList<>();
-
-
-        all.forEach(collection -> {
-            list.add(new CollectionWithNFT(collection,new ArrayList<>()));
-        });
-        //rv.setAdapter(new CollectionListItemAdapter(RepositoryDatabase.getCollectionWithNft(this.getApplicationContext())));
-
-
-        CollectionWithNFT allNfts = new CollectionWithNFT(new Collection("Sve kolekcije"), new ArrayList<>());
-
-        list.forEach(collection -> {
-            allNfts.nfts.addAll(collection.nfts);
-        });
-
-        list.add(allNfts);
-
-        rv.setAdapter(new CollectionListItemAdapter(list));
-
-
-        rv.setOnClickListener(v -> {
-            //TODO go to collection info
-            Intent intent = new Intent(getApplicationContext(), AddCollectionActivity.class);
-            startActivity(intent);
-        });
+    private void setupButtons() {
         View button = findViewById(R.id.main_activity_button_1);
 
         button.setOnClickListener(v -> {
@@ -89,14 +79,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         View button2 = findViewById(R.id.main_activity_button_2);
 
         button2.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(),AddCollectionActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void openCollectionDetails(CollectionWithNFT collectionWithNFT){
+
+        Intent intent = new Intent(getApplicationContext(), CollectionDisplayActivity.class);
+
+
+        intent.putExtra("id",collectionWithNFT.collection.id);
+
+        startActivity(intent);
+        return;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setupRecyclerView() {
+        List<CollectionWithNFT> data = RepositoryDatabase.getCollectionWithNft(this.getApplicationContext());
+
+        RecyclerView rv = findViewById(R.id.rv_collection_list_items);
+
+        CollectionListItemAdapter collectionListAdapter = new CollectionListItemAdapter(data);
+        collectionListAdapter.setOnClickListener(this::openCollectionDetails);
+
+        rv.setAdapter(collectionListAdapter);
 
     }
 

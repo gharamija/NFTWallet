@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nftwallet.NFTViewActivity;
 import com.example.nftwallet.R;
 import com.example.nftwallet.data.ImageLoadTask;
+import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.NFT;
 
@@ -29,12 +30,12 @@ import java.util.Locale;
 public class NFTListItemAdapter extends RecyclerView.Adapter<NFTListItemAdapter.NFTListItemViewHolder> {
     private Context context;
     private List<NFT> nfts;
+    private Collection collection;
 
-    public NFTListItemAdapter(Context context, List<NFT> nfts) {
+    public NFTListItemAdapter(Context context, List<NFT> nfts,Collection collection) {
         this.context = context;
         this.nfts = nfts;
-
-        System.out.println(nfts);
+        this.collection = collection;
     }
 
     @NonNull
@@ -68,9 +69,8 @@ public class NFTListItemAdapter extends RecyclerView.Adapter<NFTListItemAdapter.
         }
 
         public void bind(NFT nft) {
-            System.out.println("entering bind");
 
-            NFTListItemOnClickListener listener = new NFTListItemOnClickListener(context, nft.name);
+            NFTListItemOnClickListener listener = new NFTListItemOnClickListener(context, nft);
 
             itemView.setOnClickListener(listener);
             ImageView imageView = itemView.findViewById(R.id.nft_list_item_image);
@@ -80,26 +80,29 @@ public class NFTListItemAdapter extends RecyclerView.Adapter<NFTListItemAdapter.
             nameTextView.setText(nft.name);
             priceTextView.setText(String.format(Locale.US, "%.4f ETH", nft.price));
 
-            new ImageLoadTask(nft.imageUrl, imageView).execute();
+            imageView.setImageBitmap(BitmapFactory.decodeFile(nft.imageUrl));
 
         }
 
         private class NFTListItemOnClickListener implements View.OnClickListener {
             public Context context;
-            public String name;
-            public NFTListItemOnClickListener(Context context, String name) {
+            public NFT nft;
+            public NFTListItemOnClickListener(Context context, NFT nft) {
                 this.context = context;
-                this.name = name;
+                this.nft = nft;
             }
 
             @Override
             public void onClick(View v) {
-                Log.d("JEBOTE", name);
                 Intent intent = new Intent(context, NFTViewActivity.class);
-                Bundle extras = new Bundle();
 
-                extras.putString("name", name);
-                intent.putExtras(extras);
+                intent.putExtra("id",nft.id);
+                intent.putExtra("name",nft.name);
+                intent.putExtra("description", nft.description);
+                intent.putExtra("price",nft.price);
+                intent.putExtra("image",nft.imageUrl);
+
+
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

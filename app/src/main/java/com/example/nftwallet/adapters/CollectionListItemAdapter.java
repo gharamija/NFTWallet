@@ -19,9 +19,13 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
     private Context context;
     private List<CollectionWithNFT> collections;
 
+    private OnClickListener onClickListener;
+
     public CollectionListItemAdapter(List<CollectionWithNFT> collections) {
         this.collections = collections;
     }
+
+
 
     @NonNull
     @Override
@@ -35,15 +39,30 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
     public void onBindViewHolder(@NonNull CollectionListItemViewHolder holder, int position) {
         CollectionWithNFT collection = collections.get(position);
 
-        holder.bind(collection);
+        if (collection!=null) {
+
+            holder.itemView.setOnClickListener(c -> {
+                onClickListener.onItemClick(collection);
+            });
+            holder.bind(collection);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return collections.size();
+        return collections!=null? collections.size():0;
     }
 
-    public class CollectionListItemViewHolder extends RecyclerView.ViewHolder {
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    @FunctionalInterface
+    public interface OnClickListener {
+        void onItemClick(CollectionWithNFT collectionWithNFT);
+    }
+
+        public static class CollectionListItemViewHolder extends RecyclerView.ViewHolder {
         private final View itemView;
 
         public CollectionListItemViewHolder(View itemView) {
@@ -63,6 +82,8 @@ public class CollectionListItemAdapter extends RecyclerView.Adapter<CollectionLi
         }
         
     }
+
+
 
 }
 

@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.nftwallet.database.Entities.CollectionsAndNFT;
 import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.databinding.ActivityAddNftBinding;
 import com.example.nftwallet.database.Entities.NFT;
@@ -107,6 +109,7 @@ public class AddNFTActivity extends AppCompatActivity {
         }
         return path;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,10 +120,12 @@ public class AddNFTActivity extends AppCompatActivity {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         imageView.setImageBitmap(selectedImage);
 
+
                         Uri tempUri = getImageUri(getApplicationContext(), selectedImage);
 
-                        binding.etImageurl.setText(new File(getRealPathFromURI(tempUri)).toString());
-                        binding.etImageurl.setText(tempUri.toString());
+
+                       binding.etImageurl.setText(new File(getRealPathFromURI(tempUri)).toString());
+
 
                     }
                     break;
@@ -195,7 +200,20 @@ public class AddNFTActivity extends AppCompatActivity {
 
         DB.nFTDao().insertNFT(nft);
 
+        //add this nft to All NFT'S collection (All NFT's id:24)
+        List<NFT> nfts = DB.nFTDao().getAll();
+        Long nftId = nfts.get(nfts.size()-1).id;
+        DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId,24));
 
+        //add this nft to collection from past activity
+        try {
+            Intent intent = getIntent();
+            Bundle bundleData = intent.getExtras();
+            String collectionId = bundleData.get("collectionId").toString();
+            if (!collectionId.equals("24")) {
+                DB.collectionsAndNFT().insertCollectionAndNft(new CollectionsAndNFT(nftId, Long.valueOf(collectionId)));
+            }
+        }catch (Exception e){}
     }
 
     private boolean formValid() {

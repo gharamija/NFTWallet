@@ -22,6 +22,12 @@ public interface NFTDao {
 
     @Delete
     void deleteNFT(NFT nft);
+
+    @Query("DELETE FROM NFT WHERE id == :nftId")
+    void deleteById(Long nftId);
+
+    @Query("DELETE FROM NFT")
+    void deleteAll();
 }
 
 

@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 
 @Entity(tableName = "NFT")
 public class NFT {
@@ -29,5 +31,17 @@ public class NFT {
         this.price = price;
         this.imageUrl = imageUrl;
         this.sold = sold;
+    }
+
+    @Override
+    public String toString() {
+        return "NFT{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", sold=" + sold +
+                '}';
     }
 }

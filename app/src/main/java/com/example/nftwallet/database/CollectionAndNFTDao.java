@@ -22,4 +22,7 @@ public interface CollectionAndNFTDao {
 
     @Query("SELECT * FROM CollectionsAndNFT")
     List<CollectionsAndNFT> getAll();
+
+    @Query("DELETE FROM CollectionsAndNFT")
+    void deleteAll();
 }

@@ -21,4 +21,7 @@ public interface CollectionDao {
 
     @Query("SELECT * FROM Collection")
     List<Collection> getAll();
+
+    @Query("DELETE FROM Collection")
+    abstract void deleteAll();
 }

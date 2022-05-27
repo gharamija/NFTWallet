@@ -1,12 +1,16 @@
 package com.example.nftwallet;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.nftwallet.adapters.CollectionListItemAdapter;
@@ -15,6 +19,7 @@ import com.example.nftwallet.data.FetchData;
 import com.example.nftwallet.data.PriceSingleton;
 import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
+import com.example.nftwallet.database.Entities.CollectionsAndNFT;
 import com.example.nftwallet.database.Entities.NFT;
 import com.example.nftwallet.database.RepositoryDatabase;
 
@@ -25,6 +30,7 @@ import java.util.Locale;
 
 public class CollectionDisplayActivity extends AppCompatActivity {
 
+    private CollectionWithNFT collectionWithNFT;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -33,12 +39,18 @@ public class CollectionDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_display);
 
+        setupScreen();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setupScreen() {
         Bundle bundleData = getIntent().getExtras();
 
 
-        // TODO: get CollectionWithNFT from DB
-        List<CollectionWithNFT> collectionWithNFTList = RepositoryDatabase.getCollectionWithNft(getApplicationContext());
-        CollectionWithNFT collectionWithNFT = collectionWithNFTList.stream().filter(col -> col.collection.id == bundleData.get("id")).findAny().get();
+        collectionWithNFT =
+                RepositoryDatabase.getNftsFromCollectionId(Integer.parseInt(bundleData.get("id").toString())
+                        , this.getApplicationContext());
 
 
 
@@ -65,10 +77,20 @@ public class CollectionDisplayActivity extends AppCompatActivity {
         usdPriceView.setText(String.format(Locale.US, "%.2f USD", totalUsdPrice));
 
         RecyclerView rv = findViewById(R.id.nft_list_items);
-        for(NFT nft : DataStorage.NFTS) {
-            Log.d("ACTIVITY", nft.imageUrl);
-        }
-        rv.setAdapter(new NFTListItemAdapter(getApplicationContext(), collectionWithNFT.nfts));
 
+        rv.setAdapter(new NFTListItemAdapter(getApplicationContext(), collectionWithNFT.nfts,collectionWithNFT.collection));
+
+    }
+
+    public void onClickFloatingButton(View view) {
+        Intent intent = new Intent(getApplicationContext(),AddNFTActivity.class);
+
+
+        intent.putExtra("collectionId",collectionWithNFT.collection.id.toString());
+        intent.putExtra("collectionName",collectionWithNFT.collection.name);
+
+
+
+        startActivity(intent);
     }
 }
