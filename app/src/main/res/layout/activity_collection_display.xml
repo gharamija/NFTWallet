@@ -87,22 +87,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transparent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add"
-        android:onClick="onClickFloatingButton"
+        android:id="@+id/fab_delete"
+        android:onClick="onClickFloatingButtonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_horizontal"
         android:layout_marginBottom="@dimen/margin_vertical"
+        android:src="@android:drawable/ic_delete"
+        app:backgroundTint="@color/white"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fab_add" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginBottom="@dimen/margin_vertical"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        android:onClick="onClickFloatingButton"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+   </androidx.constraintlayout.widget.ConstraintLayout>

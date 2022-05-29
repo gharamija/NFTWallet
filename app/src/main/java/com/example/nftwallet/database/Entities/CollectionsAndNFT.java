@@ -19,4 +19,6 @@ public class CollectionsAndNFT {
         this.nftId = nftId;
         this.collectionId = collectionId;
     }
+
+
 }

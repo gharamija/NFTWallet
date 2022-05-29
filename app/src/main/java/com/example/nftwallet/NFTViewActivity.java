@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.example.nftwallet.data.ImageLoadTask;
 import com.example.nftwallet.database.Entities.NFT;
 import com.example.nftwallet.database.NFTWalletDatabase;
+import com.example.nftwallet.database.RepositoryDatabase;
 
 import java.util.List;
 
@@ -91,10 +92,12 @@ public class NFTViewActivity extends AppCompatActivity {
 
         if (id == R.id.delete) {
             Log.d(TAG, "onOptionsItemSelected: ");
-            Log.d(TAG, idFromPrevActvty); //19
+            Log.d(TAG, idFromPrevActvty); //61
 
-            DB.collectionsAndNFT().deleteByNftId(Long.getLong(idFromPrevActvty));
-            DB.nFTDao().deleteById(Long.getLong(idFromPrevActvty));
+
+            DB.collectionsAndNFT().deleteByNftId(Long.valueOf(idFromPrevActvty)); //throws NullPointerException for idFromPrevAcvty
+            DB.nFTDao().deleteById(Long.valueOf(idFromPrevActvty));
+
 
             finish();
             return true;
@@ -103,8 +106,6 @@ public class NFTViewActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("ClickableViewAccessibility")
@@ -137,11 +138,13 @@ public class NFTViewActivity extends AppCompatActivity {
         //pull name from previous activity
         Intent intent = getIntent();
         Bundle bundleData = intent.getExtras();
-        idFromPrevActvty = bundleData.get("id").toString();
-        nameFromPrevActvty=  bundleData.get("name").toString();
-        descriptionFromPrevActvty = bundleData.get("description").toString();
-        priceETHFromPrevActvty = bundleData.get("price").toString() + " Eth";
-        imageFromPrevActvty = bundleData.get("image").toString();
+
+            idFromPrevActvty = bundleData.get("id").toString();
+            nameFromPrevActvty = bundleData.get("name").toString();
+            descriptionFromPrevActvty = bundleData.get("description").toString();
+            priceETHFromPrevActvty = bundleData.get("price").toString() + " Eth";
+            imageFromPrevActvty = bundleData.get("image").toString();
+
 
         name.setText(nameFromPrevActvty);
         price.setText(priceETHFromPrevActvty);

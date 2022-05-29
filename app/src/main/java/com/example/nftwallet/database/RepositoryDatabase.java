@@ -15,6 +15,7 @@ import com.example.nftwallet.database.Entities.NFT;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,7 @@ public class RepositoryDatabase {
         //add to collectionWithNFT other CollectionWithNFT that does NOT contain nft's
         collections.forEach(c -> {collectionWithNFT.add(new CollectionWithNFT(c,new ArrayList<>()));});
 
+        collectionWithNFT.sort((c1,c2)-> c2.nfts.size()-c1.nfts.size());
         return collectionWithNFT;
     }
 
@@ -79,4 +81,5 @@ public class RepositoryDatabase {
                 .filter(cn -> cn.collection.id == idCollection).findAny().get();
 
     }
+
 }

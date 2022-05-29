@@ -181,8 +181,7 @@ public class AddNFTActivity extends AppCompatActivity {
             }
             handleNft();
 
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
+            finish();
         });
 
 

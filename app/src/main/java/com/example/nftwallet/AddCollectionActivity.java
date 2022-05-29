@@ -67,7 +67,6 @@ public class AddCollectionActivity extends AppCompatActivity implements View.OnC
 
         database.collectionDao().insertCollection(new Collection(textInput));
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

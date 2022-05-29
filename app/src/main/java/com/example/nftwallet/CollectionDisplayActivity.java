@@ -21,17 +21,20 @@ import com.example.nftwallet.database.Entities.Collection;
 import com.example.nftwallet.database.Entities.CollectionWithNFT;
 import com.example.nftwallet.database.Entities.CollectionsAndNFT;
 import com.example.nftwallet.database.Entities.NFT;
+import com.example.nftwallet.database.NFTWalletDatabase;
 import com.example.nftwallet.database.RepositoryDatabase;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class CollectionDisplayActivity extends AppCompatActivity {
 
     private CollectionWithNFT collectionWithNFT;
 
+    private NFTWalletDatabase DB;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -41,6 +44,13 @@ public class CollectionDisplayActivity extends AppCompatActivity {
 
         setupScreen();
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupScreen();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -80,6 +90,16 @@ public class CollectionDisplayActivity extends AppCompatActivity {
 
         rv.setAdapter(new NFTListItemAdapter(getApplicationContext(), collectionWithNFT.nfts,collectionWithNFT.collection));
 
+        handleDeleteButton();
+    }
+
+    private void handleDeleteButton() {
+        if (collectionWithNFT.collection.name.equals("All NFT's")){
+            View button = findViewById(R.id.fab_delete);
+
+            button.setEnabled(false);
+            button.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void onClickFloatingButton(View view) {
@@ -92,5 +112,18 @@ public class CollectionDisplayActivity extends AppCompatActivity {
 
 
         startActivity(intent);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void onClickFloatingButtonDelete(View view) {
+         DB = NFTWalletDatabase.getInstance(this.getApplicationContext());
+
+        List<Long> listOfNftIds = collectionWithNFT.nfts.stream().map(n -> n.id).collect(Collectors.toList());
+
+        DB.collectionsAndNFT().deleteByCollectionId(collectionWithNFT.collection.id);
+        DB.collectionDao().deleteCollection(collectionWithNFT.collection);
+
+
+        this.finish();
     }
 }

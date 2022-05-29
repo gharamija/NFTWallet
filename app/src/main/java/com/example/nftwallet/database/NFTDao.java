@@ -11,6 +11,8 @@ import com.example.nftwallet.database.Entities.NFT;
 
 import java.util.List;
 
+import retrofit2.http.DELETE;
+
 @Dao
 public interface NFTDao {
 
@@ -24,6 +26,7 @@ public interface NFTDao {
     void deleteNFT(NFT nft);
 
     @Query("DELETE FROM NFT WHERE id == :nftId")
+
     void deleteById(Long nftId);
 
     @Query("DELETE FROM NFT")

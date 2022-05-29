@@ -29,4 +29,6 @@ public interface CollectionAndNFTDao {
     @Query("DELETE FROM CollectionsAndNFT WHERE nftId==:nftId")
     void deleteByNftId(long nftId);
 
+    @Query("DELETE FROM CollectionsAndNFT WHERE collectionId == :collectionid")
+    void deleteByCollectionId(Long collectionid);
 }

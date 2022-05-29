@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupScreen();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setupScreen() {
         setupRecyclerView();
         setupButtons();
